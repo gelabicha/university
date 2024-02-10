@@ -16,4 +16,6 @@ public interface GroupService {
     ResponseEntity<Groups> groupdelete(Integer Id);
 
     List<Groups> searchegroup(Integer Id);
+
+    List<Groups> searchGroup(Integer groupId);
 }

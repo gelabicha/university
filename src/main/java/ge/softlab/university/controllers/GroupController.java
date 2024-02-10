@@ -32,4 +32,8 @@ public class GroupController {
     public List<Groups> search (Integer Id){
         return groupService.searchegroup(Id);
     }
+    @GetMapping("/group/{GroupId}")
+    public List<Groups> searchGroup(Integer GroupId){
+        return groupService.searchGroup(GroupId);
+    }
 }

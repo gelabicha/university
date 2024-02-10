@@ -14,6 +14,10 @@ public class Groups {
     @SequenceGenerator(name = "groups_seq_generation", sequenceName = "groups_id_seq", allocationSize = 1)
     private Integer Id;
 
+
+    @Column(name = "group_id")
+    private Integer groupId;
+
     @Column(name = "student_id")
     private Integer studentId;
 

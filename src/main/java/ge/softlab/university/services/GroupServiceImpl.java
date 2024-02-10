@@ -19,6 +19,7 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public Groups groupadd(GroupAddModel groupAddModel) {
         Groups groups = new Groups();
+        groups.setGroupId(groupAddModel.groupId());
         groups.setStudentId(groupAddModel.studentId());
         groups.setTeacherId(groupAddModel.teacherId());
         groupRepository.save(groups);
@@ -30,6 +31,7 @@ public class GroupServiceImpl implements GroupService {
     public ResponseEntity<Groups> groupupdate(Integer Id, GroupAddModel groupAddModel) {
         Groups groupupdate = groupRepository.findById(Id)
                 .orElseThrow(() -> new ResourceNotFoundException("group not found for this id"));
+        groupupdate.setGroupId(groupAddModel.groupId());
         groupupdate.setStudentId(groupAddModel.studentId());
         groupupdate.setTeacherId(groupAddModel.teacherId());
         groupRepository.save(groupupdate);
@@ -49,5 +51,11 @@ public class GroupServiceImpl implements GroupService {
         List<Groups> allbyId = groupRepository.findAllById(Id);
         return allbyId;
         }
+
+    @Override
+    public List<Groups> searchGroup(Integer groupId) {
+        List<Groups> allbyGroup = groupRepository.findAllByGroupId(groupId);
+        return allbyGroup;
+    }
 
 }
