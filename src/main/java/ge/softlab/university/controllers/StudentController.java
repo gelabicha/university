@@ -17,4 +17,5 @@ public class StudentController {
     public Students studentadd(@RequestBody StudentAddModel studentAddModel){
         return studentService.studentadd(studentAddModel);
     }
+
 }
