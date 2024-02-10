@@ -41,11 +41,11 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public ResponseEntity<Students> studentdelete(Integer Id) {
+    public  ResponseEntity<Students> studentdelete(Integer Id) {
         Students studentdelete = studentRepository.findById(Id)
                 .orElseThrow(() -> new ResourceNotFoundException("student not found for this id"));
         studentRepository.deleteById(Id);
-        return ResponseEntity.ok(studentdelete);
+        return (ResponseEntity<Students>) ResponseEntity.ok();
     }
 
     /*@Override
