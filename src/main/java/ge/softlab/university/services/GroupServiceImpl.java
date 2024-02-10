@@ -1,9 +1,12 @@
 package ge.softlab.university.services;
 
 import ge.softlab.university.entities.Groups;
+import ge.softlab.university.entities.Students;
 import ge.softlab.university.models.GroupAddModel;
 import ge.softlab.university.repositories.GroupRepository;
 import lombok.AllArgsConstructor;
+import org.apache.kafka.common.errors.ResourceNotFoundException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @AllArgsConstructor
@@ -18,5 +21,15 @@ public class GroupServiceImpl implements GroupService {
         groupRepository.save(groups);
 
         return groups;
+    }
+
+    @Override
+    public ResponseEntity<Groups> groupupdate(Integer Id, GroupAddModel groupAddModel) {
+        Groups groupupdate = groupRepository.findById(Id)
+                .orElseThrow(() -> new ResourceNotFoundException("group not found for this id"));
+        groupupdate.setStudentId(groupAddModel.studentId());
+        groupupdate.setTeacherId(groupAddModel.teacherId());
+        groupRepository.save(groupupdate);
+        return ResponseEntity.ok(groupupdate);
     }
 }
