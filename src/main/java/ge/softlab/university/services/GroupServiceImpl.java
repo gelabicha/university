@@ -40,7 +40,7 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public ResponseEntity<Groups> groupdelete(Integer Id) {
-        Groups teacherdelete = groupRepository.findById(Id)
+        Groups groupdelete = groupRepository.findById(Id)
                 .orElseThrow(() -> new ResourceNotFoundException("student not found for this id"));
         groupRepository.deleteById(Id);
         return (ResponseEntity<Groups>) ResponseEntity.ok();
