@@ -9,6 +9,8 @@ import org.apache.kafka.common.errors.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 class TeacherServiceImpl implements TeacherService {
@@ -38,5 +40,19 @@ class TeacherServiceImpl implements TeacherService {
         teacherRepository.save(teacherupdate);
 
         return ResponseEntity.ok(teacherupdate);
+    }
+
+    @Override
+    public ResponseEntity<Teachers> teachertdelete(Integer Id) {
+        Teachers teacherdelete = teacherRepository.findById(Id)
+                .orElseThrow(() -> new ResourceNotFoundException("student not found for this id"));
+        teacherRepository.deleteById(Id);
+        return (ResponseEntity<Teachers>) ResponseEntity.ok();
+    }
+
+    @Override
+    public List<Teachers> searchteacher(String firstName) {
+        List<Teachers> allbyfirstname = teacherRepository.findAllByfirstName(firstName);
+        return allbyfirstname;
     }
 }

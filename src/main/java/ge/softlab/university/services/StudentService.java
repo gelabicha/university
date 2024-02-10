@@ -5,6 +5,8 @@ import ge.softlab.university.models.StudentAddModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface StudentService {
 
@@ -14,5 +16,5 @@ public interface StudentService {
 
    ResponseEntity<Students> studentdelete(Integer Id);
 
-    /* void studentdeleteid(Integer Id);*/
+    List<Students> searchstudent(String firstName);
 }

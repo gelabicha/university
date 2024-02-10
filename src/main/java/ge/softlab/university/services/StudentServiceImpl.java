@@ -8,6 +8,8 @@ import org.apache.kafka.common.errors.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class StudentServiceImpl implements StudentService {
@@ -48,9 +50,10 @@ public class StudentServiceImpl implements StudentService {
         return (ResponseEntity<Students>) ResponseEntity.ok();
     }
 
-    /*@Override
-    public void studentdeleteid(Integer Id) {
-        studentRepository.deleteById(Id);
+    @Override
+    public List<Students> searchstudent(String firstName) {
+        List<Students> allbyfirstname = studentRepository.findAllByfirstName(firstName);
+        return allbyfirstname;
+    }
 
-    }*/
 }

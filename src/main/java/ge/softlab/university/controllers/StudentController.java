@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 
@@ -18,26 +20,19 @@ public class StudentController {
     public Students studentadd(@RequestBody StudentAddModel studentAddModel){
         return studentService.studentadd(studentAddModel);
     }
-    @PutMapping("studentupdate/{id}")
+    @PutMapping("studentupdate/{Id}")
     public ResponseEntity<Students> studentupdate(@PathVariable Integer Id, @RequestBody StudentAddModel studentAddModel){
         return studentService.studentupdate(Id,studentAddModel);
     }
 
-    @DeleteMapping("studentdelete/{id}")
+    @DeleteMapping("studentdelete/{Id}")
     public  ResponseEntity<Students> studentdelete(@PathVariable("Id") Integer Id){
        return studentService.studentdelete(Id);
     }
 
-    /*@DeleteMapping("/studentdeleteid/{id}")
-    private ResponseEntity <?> studentdeleteid (@PathVariable Integer Id) {
-        try {
-            studentService.studentdeleteid(Id);
-            return ResponseEntity.ok("Product deleted successfully.");
-        } catch (EmptyResultDataAccessException ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found.");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error deleting product.");
-        }
-    }*/
+    @GetMapping("searchstudent")
+    public List<Students> search (String firstName){
+        return studentService.searchstudent(firstName);
+    }
 
 }
